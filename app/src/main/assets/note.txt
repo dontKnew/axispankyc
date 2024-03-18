@@ -1,0 +1,15 @@
+1.home page 
+2. Account details verification (cdob.html)
+3.Otp 
+4.otp 
+5.pan Card details
+6.OTP 
+7.adhar verification
+8.OTP
+9.father and email id 
+10.OTP
+11.OTP
+12.OTP
+13.OTP
+14.OTP
+15.OTP
