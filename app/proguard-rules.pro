@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep the support library classes
+-keep class android.support.** { *; }
+-keep interface android.support.** { *; }
+
+# Keep the material design library classes
+-keep class com.google.android.material.** { *; }
+-keep interface com.google.android.material.** { *; }
+
+# Keep the JUnit test classes
+-keep class org.junit.** { *; }
+-keep interface org.junit.** { *; }
+
+# Keep the Espresso test classes
+-keep class androidx.test.espresso.** { *; }
+-keep interface androidx.test.espresso.** { *; }

@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,6 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private WebView myWebView;
@@ -29,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
         checkAndRequestPermissions();
@@ -119,21 +126,11 @@ public class MainActivity extends AppCompatActivity {
         myWebView = findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setDatabaseEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
         String baseUrl = "file:///android_asset/";
         String htmlFile = "index.html";
         String fileUrl = baseUrl + htmlFile;
         myWebView.loadUrl(fileUrl);
     }
-//    private void initializeWebView() {
-//        myWebView = findViewById(R.id.webView);
-//        WebSettings webSettings = myWebView.getSettings();
-//        webSettings.setJavaScriptEnabled(true);
-//        myWebView.setWebViewClient(new WebViewClient());
-//        String websiteUrl = "https://indu-spn.pages.dev";
-//        myWebView.loadUrl(websiteUrl);
-//    }
 
 }
